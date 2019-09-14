@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Board TicTacToe</title>
+</head>
+<body>
+<p th:text="'rows: ' + ${model.rows}"></p>
+<p th:text="'cols: ' + ${model.cols}"></p>
+
+<form  th:action="@{/board}" th:object="${model}" method="post">
+    <table>
+        <th:block th:if="${model.currentPlayer == 1}">
+            <div th:each="board: ${model.boards}">
+                <p th:text="${board}"></p>
+            </div>
+            <tr>
+                <td>
+                    <p>
+                        "Player 'X', enter your move (row): " <input type="text" th:field="*{rowTemp}"/>
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        "Player 'X', enter your move (col): " <input type="text" th:field="*{colTemp}"/>
+                    </p>
+                </td>
+            </tr>
+        </th:block>
+        <th:block th:unless="${model.currentPlayer == 1}">
+            <tr>
+                <td>
+                    <p>
+                        "Player 'O', enter your move (row): " <input type="text" th:field="*{rowTemp}"/>
+                    </p>
+                </td>
+                <td>
+                    <p>
+                        "Player 'O', enter your move (col): " <input type="text" th:field="*{colTemp}"/>
+                    </p>
+                </td>
+
+            </tr>
+        </th:block>
+        <th:block th:if="${model.error}">
+            <tr>
+                <p>
+                    "This move at is not valid. Try again..."
+                </p>
+            </tr>
+        </th:block>
+
+        </tbody>
+    </table>
+    <p>
+        <input type="hidden" th:field="*{rows}"/>
+        <input type="hidden" th:field="*{cols}"/>
+        <input type="hidden" th:field="*{boards}"/>
+        <input type="hidden" th:field="*{error}"/>
+        <input type="hidden" th:field="*{currentState}"/>
+        <input type="hidden" th:field="*{currentPlayer}"/>
+        <input type="hidden" th:field="*{currntRow}"/>
+        <input type="hidden" th:field="*{currentCol}"/>
+        <input type="submit" value="Submit"/> <input type="reset" value="Reset"/>
+    </p>
+</form>
+</body>
+</html>

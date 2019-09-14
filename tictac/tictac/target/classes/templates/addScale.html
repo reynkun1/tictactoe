@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Good Thymes Virtual Grocery</title>
+</head>
+
+<body>
+<form action="#" th:action="@{/addScale}" th:object="${model}" method="post">
+    <p>
+        Scale: <input type="text" th:field="*{rows}"/>
+    </p>
+    <p>
+        <input type="submit" value="Submit"/> <input type="reset" value="Reset"/>
+    </p>
+    <input type="hidden" th:field="*{error}"/>
+    <input type="hidden" th:field="*{currentState}"/>
+    <input type="hidden" th:field="*{currentPlayer}"/>
+    <input type="hidden" th:field="*{currntRow}"/>
+    <input type="hidden" th:field="*{currentCol}"/>
+</form>
+</body>
+</html>
